@@ -1,0 +1,22 @@
+Boot system into recovery mode.
+
+Troubleshoot > Advanced Options > Command Prompt > 
+Enter password if requested
+X:\Windows\System32> regedit
+
+Select File: Computer > HKEY_LOCAL_MACHINE
+Click: File > Load Hive...
+***Open: Local Disk (C:) > Windows > System32 > config > SYSTEM
+
+A popup titled "Load Hive" will ask for a Key Name, input OfflineSYSTEM
+
+Open: Computer > HKEY_LOCAL_MACHINE > OfflineSYSTEM > ControlSet001 > Control > CI > Policy > SkuPolicyRequired
+Value data = 0 (from 1)
+
+Select File: Computer > HKEY_LOCAL_MACHINE > OfflineSYSTEM 
+Click: File > Unload Hive...
+
+Close: regedit, command line 
+Select: "Turn off your PC"
+
+***Currently in "Boot (X:)", absolutely need to switch to "Local Disk (C:)". Editing the "Boot (X:)" registry is actually editing the registry for recovery mode, not Windows. One can't change this windows installation registry without loading the hive from "Local Disk (C:)" into the registry editor.
